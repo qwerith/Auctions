@@ -1,0 +1,22 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    <br>
+    {% if listings %}
+        {% for i in listings %}
+            <label style="font-weight:bold;"><a href="{% url 'listing' owner=i.main_info.owner id=i.main_info.id %}">{{ i.main_info.title }}</a></label>
+            <br>
+            <img src="/{{ i.image.image }}" style="height:500px;width:500px;" alt="Image">
+            <br>
+            <div>Description: {{ i.main_info.description }}</div>
+            <div>Starting Bid: {{ i.main_info.starting_bid }}</div>
+            {{ i.image }}
+            <br>
+            <br>
+            <br>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
